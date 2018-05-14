@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../lib/angular.js"></script>
+    <style>
+        input.ng-invalid {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+<!-- ng-model 指令用于绑定应用程序数据到 HTML 控制器(input, select, textarea)的值，将输入域的值与 AngularJS 创建的变量绑定 -->
+<!--<div ng-app="myApp" ng-controller="myCtrl">-->
+    <!--名字: <input ng-model="name">-->
+<!--</div>-->
+<!--<script>-->
+    <!--var app = angular.module('myApp', []);-->
+    <!--app.controller('myCtrl', function($scope) {-->
+        <!--$scope.name = "John Doe";-->
+    <!--});-->
+<!--</script>-->
+
+<!-- 验证输入 -->
+<!--<form ng-app="" name="myForm">-->
+    <!--Email:-->
+    <!--<input type="email" name="myAddress" ng-model="text">-->
+    <!--<span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>-->
+<!--</form>-->
+
+<!-- 使用ng-model获取状态 (invalid, dirty, touched, error) -->
+<!--<form ng-app="" name="myForm" ng-init="myText = 'test@runoob.com'">-->
+    <!--Email:-->
+    <!--<input type="email" name="myAddress" ng-model="myText" required></p>-->
+    <!--<h1>状态</h1>-->
+    <!--{{myForm.myAddress.$valid}}-->
+    <!--{{myForm.myAddress.$dirty}}-->
+    <!--{{myForm.myAddress.$touched}}-->
+<!--</form>-->
+
+<!-- 基于提供的状态有对应的CSS，如
+    ng-empty
+    ng-not-empty
+    ng-touched      失去焦点
+    ng-untouched    未失去焦点
+    ng-valid        表单通过验证为true
+    ng-invalid      未通过验证
+    ng-dirty        输入值变更
+    ng-pending      满足$asyncValidators的情况
+    ng-pristine     是初始状态
+ -->
+<form ng-app="" name="myForm">
+    输入你的名字:
+    <input name="myAddress" ng-model="text" required>
+</form>
+</body>
+</html>

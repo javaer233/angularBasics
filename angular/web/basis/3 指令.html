@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../lib/angular.js"></script>
+</head>
+<body>
+<!--
+AngularJS 通过被称为 指令的新属性来扩展 HTML（带有前缀ng）；通过内置的指令来为应用添加功能；允许自定义指令
+ng-app 指令初始化一个 AngularJS 应用程序。
+ng-init 指令初始化应用程序数据。
+ng-model 指令把元素值（比如输入域的值）绑定到应用程序。
+-->
+<!-- 使用{{}}绑定数据到两个元素 -->
+<!--<div ng-app="" ng-init="quantity=1;price=5">-->
+    <!--<h2>价格计算器</h2>-->
+    <!--数量： <input type="number" ng-model="quantity">-->
+    <!--价格： <input type="number" ng-model="price">-->
+    <!--<p><b>总价：</b> {{ quantity * price }}</p>-->
+<!--</div>-->
+
+<!-- 重复一个html元素（相当于遍历） -->
+<!--<div ng-app="" ng-init="names=['Jani','Hege','Kai']">-->
+    <!--<p>使用 ng-repeat 来循环数组</p>-->
+    <!--<ul>-->
+        <!--<li ng-repeat="x in names">-->
+            <!--{{ x }}-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->
+<!-- 对象数组 -->
+<!--<div ng-app="" ng-init="names=[-->
+<!--{name:'Jani',country:'Norway'},-->
+<!--{name:'Hege',country:'Sweden'},-->
+<!--{name:'Kai',country:'Denmark'}]">-->
+    <!--<p>循环对象：</p>-->
+    <!--<ul>-->
+        <!--<li ng-repeat="x    in names">-->
+            <!--{{ x.name + ', ' + x.country }}-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->
+
+<!-- 创建自定义指令，命名驼峰，使用时以-隔开驼峰
+调用方式：（对应的restrict值）
+    元素名     E
+    属性      A
+    类名      C
+    注释      M
+可以使用restrict : "EA",表示均可使用
+-->
+<div ng-app="myApp">
+    <div runoob-directive=""></div>
+    <div class="runoob-directive"></div>
+    <runoob-directive></runoob-directive>
+    <!--directive: runoob-directive-->
+</div>
+<script>
+    var app = angular.module("myApp", []);
+    app.directive("runoobDirective", function() {
+        return {
+            restrict : "EACM",
+            template : "<h1>自定义指令!</h1>"
+        };
+    });
+</script>
+
+<p>
+    ng-model是用于表单元素的，支持双向绑定。对普通元素无效；
+    ng-bind用于普通元素，不能用于表单元素，应用程序单向地渲染数据到元素；
+    当ng-bind和{{}}同时使用时，ng-bind绑定的值覆盖该元素的内容。
+</p>
+
+</body>
+</html>

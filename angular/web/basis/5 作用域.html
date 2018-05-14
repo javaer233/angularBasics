@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../lib/angular.js"></script>
+</head>
+<body>
+<!-- Scope(作用域) 是应用在 HTML (视图) 和 JavaScript (控制器)之间的纽带。
+Scope 是一个对象，有可用的方法和属性。
+-->
+<!-- 创建控制器时，将$Scope作为一个参数传递，控制器中的属性对应了视图上的属性 -->
+<!--<div ng-app="myApp" ng-controller="myCtrl">-->
+    <!--<h1>{{carname}}</h1>-->
+<!--</div>-->
+<!--<script>-->
+    <!--var app = angular.module('myApp', []);-->
+    <!--app.controller('myCtrl', function($scope) {-->
+        <!--$scope.carname = "Volvo";-->
+    <!--});-->
+<!--</script>-->
+
+<!-- scope概述
+AngularJS组成：
+    View：即HTML
+    Model：当前视图中的可用数据
+    Controller：JavaScript函数
+scope属于模型，带有属性和方法，它们可以在视图或者控制器中使用
+-->
+<!--<div ng-app="myApp" ng-controller="myCtrl">-->
+    <!--<input ng-model="name">-->
+    <!--<h1>{{greeting}}</h1>-->
+    <!--<button ng-click='sayHello()'>点我</button>-->
+<!--</div>-->
+<!--<script>-->
+    <!--var app = angular.module('myApp', []);-->
+    <!--app.controller('myCtrl', function($scope) {-->
+        <!--$scope.name = "Runoob";-->
+        <!--$scope.sayHello = function() {-->
+            <!--$scope.greeting = 'Hello ' + $scope.name + '!';-->
+        <!--};-->
+    <!--});-->
+<!--</script>-->
+
+<!-- 根作用域 rootScope可作用于整个应用中，用 rootscope 定义的值，可以在各个 controller 中使用-->
+<div ng-app="myApp" ng-controller="myCtrl">
+    <h1>{{lastname}} 家族成员:</h1>
+    <ul>
+        <li ng-repeat="x in names">{{x}} {{lastname}}</li>
+    </ul>
+</div>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $rootScope) {
+        $scope.names = ["Emil", "Tobias", "Linus"];
+        $rootScope.lastname = "Refsnese";
+    });
+</script>
+
+</body>
+</html>

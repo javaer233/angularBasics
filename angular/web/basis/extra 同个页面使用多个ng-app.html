@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../lib/angular.js"></script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <h1>姓氏为 {{lastname}} 家族成员:</h1>
+    <ul>
+        <li ng-repeat="x in names">{{x}} {{lastname}}</li>
+    </ul>
+</div>
+
+<div id="myApp2" ng-app="myApp2" ng-controller="myCtrl">
+    <h1>myApp2 姓氏为 {{lastname}} 家族成员:</h1>
+    <ul>
+        <li ng-repeat="x in names">{{x}}</li>
+    </ul>
+</div>
+
+<div id="myApp3" ng-app="myApp3" ng-controller="myCtrl">
+    <h1>myApp3 姓氏为 {{lastname}} 家族成员:</h1>
+    <input type="button" value="rootScope共享" ng-click="say()">
+</div>
+
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $rootScope) {
+        $scope.names = ["Emil", "Tobias", "Linus"];
+        $rootScope.lastname = "Refsnes";
+    });
+
+    var app2 = angular.module('myApp2', []);
+    app2.controller('myCtrl', function($scope, $rootScope) {
+        $scope.names = ["Emil2", "Tobias2", "Linus2"];
+        $rootScope.lastname = "Refsnes--2";
+    });
+
+    var app3 = angular.module('myApp3', []);
+    app3.controller('myCtrl', function($scope, $rootScope) {
+        $rootScope.lastname = "Refsnes--3";
+        $rootScope.say = function(){
+            $rootScope.lastname = "Refsnes";
+        }
+    });
+
+    //手动加载myApp2 ng-app,多个ng-app时，第二个之后的需要手动加载
+    angular.bootstrap(document.getElementById("myApp2"), ['myApp2']);
+    angular.bootstrap(document.getElementById("myApp3"), ['myApp3']);
+//    // 页面加载完成后,再加载模块
+//    angular.element(document).ready(function() {
+//        //手动加载myApp2 ng-app
+//        angular.bootstrap(document.getElementById("myApp2"), ['myApp2'])
+//    })
+</script>
+
+<!--
+1.ng-app是一个特殊的指令，一个HTML文档只出现一次，如出现多次也只有第一个起作用；ng-app可以出现在html文档的任何一个元素上。
+2.ng-app作用：告诉子元素，指令属于angularJs。
+3.ng-app的值可以为空，项目中一定要赋值，后面所说的模块。
+-->
+</body>
+</html>
